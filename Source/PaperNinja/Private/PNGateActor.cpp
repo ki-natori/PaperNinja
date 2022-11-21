@@ -16,9 +16,9 @@ APNGateActor::APNGateActor()
 	RootComponent = Arrow;
 
 	InitSMComponent(OutsideLeftMesh, TEXT("OutsideLeftMesh"), TEXT("StaticMesh'/Game/Architecture/SM_Fusuma02_01.SM_Fusuma02_01'"), FVector(0.0, 75.0, 0.0));
-	InitSMComponent(InsideLeftMesh, TEXT("InsideLeftMesh"), TEXT("StaticMesh'/Game/Architecture/SM_Fusuma02_01.SM_Fusuma02_02'"), FVector(0.0, 25.0, 0.0));
-	InitSMComponent(OutsideLeftMesh, TEXT("InsideRightMesh"), TEXT("StaticMesh'/Game/Architecture/SM_Fusuma02_01.SM_Fusuma02_03'"), FVector(0.0, -25.0, 0.0));
-	InitSMComponent(OutsideLeftMesh, TEXT("OutsideRightMesh"), TEXT("StaticMesh'/Game/Architecture/SM_Fusuma02_01.SM_Fusuma02_04'"), FVector(0.0, -75.0, 0.0));
+	InitSMComponent(InsideLeftMesh, TEXT("InsideLeftMesh"), TEXT("StaticMesh'/Game/Architecture/SM_Fusuma02_02.SM_Fusuma02_02'"), FVector(0.0, 25.0, 0.0));
+	InitSMComponent(InsideRightMesh, TEXT("InsideRightMesh"), TEXT("StaticMesh'/Game/Architecture/SM_Fusuma02_03.SM_Fusuma02_03'"), FVector(0.0, -25.0, 0.0));
+	InitSMComponent(OutsideRightMesh, TEXT("OutsideRightMesh"), TEXT("StaticMesh'/Game/Architecture/SM_Fusuma02_04.SM_Fusuma02_04'"), FVector(0.0, -75.0, 0.0));
 
 	GateTimeline = CreateDefaultSubobject<UTimelineComponent>(TEXT("GateTimeline"));
 	if (GateTimeline)
