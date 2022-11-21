@@ -34,7 +34,7 @@ APNBonfireActor::APNBonfireActor()
 	AudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio"));
 	AudioComp->SetupAttachment(RootComponent);
 	AudioComp->SetRelativeLocation(FVector(0.0, 0.0, 130.0));
-	ConstructorHelpers::FObjectFinder<USoundBase> SoundFinder(TEXT("ParticleSystem'/Game/Particles/PS_Fire.PS_Fire'"));
+	ConstructorHelpers::FObjectFinder<USoundBase> SoundFinder(TEXT("SoundCue'/Game/Audio/obj_fire_loop_Cue.obj_fire_loop_Cue'"));
 	if (SoundFinder.Succeeded())
 		AudioComp->SetSound(SoundFinder.Object);
 
