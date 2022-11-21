@@ -21,14 +21,14 @@ void APNAIController::BeginPlay()
 	if (ControlledPawn->PatrolPoints.Num())
 		AI_PatrollPoints = ControlledPawn->PatrolPoints;
 
-	ConstructorHelpers::FObjectFinder<UBlackboardData> BlackBoardFinder(TEXT("BlackboardData'/Game/AI/PNBlackboard_Enemy.PNBlackboard_Enemy'"));
-	if (BlackBoardFinder.Succeeded())
-		UseBlackboard(BlackBoardFinder.Object, BlackboardComp);
+	UBlackboardData* BlackBoard = LoadObject<UBlackboardData>(NULL, TEXT("BlackboardData'/Game/AI/PNBlackboard_Enemy.PNBlackboard_Enemy'"));
+	if (BlackBoard)
+		UseBlackboard(BlackBoard, BlackboardComp);
 	BlackboardComp->SetValueAsFloat(TEXT("PatrolWaitDuration"), ControlledPawn->PatrolWaitDuration);
 
-	ConstructorHelpers::FObjectFinder<UBehaviorTree> BTFinder(TEXT("BehaviorTree'/Game/AI/PNBT_Patrol.PNBT_Patrol'"));
-	if (BTFinder.Succeeded())
-		RunBehaviorTree(BTFinder.Object);
+	UBehaviorTree* BehaviorTree = LoadObject<UBehaviorTree>(NULL, TEXT("BehaviorTree'/Game/AI/PNBT_Patrol.PNBT_Patrol'"));
+	if (BehaviorTree)
+		RunBehaviorTree(BehaviorTree);
 }
 
 FVector APNAIController::GetPatrolLocation() const
