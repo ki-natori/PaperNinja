@@ -14,6 +14,7 @@ APNConstruction_Floor::APNConstruction_Floor()
 	StaticMesh = LoadObject<UStaticMesh>(NULL, TEXT("StaticMesh'/Game/Architecture/SM_Floor.SM_Floor'"));
 
 	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
+	SceneRoot->SetMobility(EComponentMobility::Static);
 	RootComponent = SceneRoot;
 }
 
