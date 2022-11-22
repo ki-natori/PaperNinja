@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Components/AudioComponent.h"
+#include "Blueprint/UserWidget.h"
 
 APNGameMode::APNGameMode()
 {
@@ -14,6 +15,10 @@ APNGameMode::APNGameMode()
 	PlayerControllerClass = APNPlayerController::StaticClass();
 	MusicSpeaker = CreateDefaultSubobject<UAudioComponent>(TEXT("MusicSpeaker"));
 	MusicSpeaker->SetAutoActivate(false);
+
+	ConstructorHelpers::FObjectFinder<UBlueprint> HUDFinder(TEXT("WidgetBlueprint'/Game/Blueprints/PNGameHUD.PNGameHUD'"));
+	if (HUDFinder.Succeeded())
+		StartingWidgetClass = HUDFinder.Object->GeneratedClass;
 }
 
 void APNGameMode::BeginPlay()
@@ -22,6 +27,12 @@ void APNGameMode::BeginPlay()
 	Pawn->OnDestroyed.AddDynamic(this, &APNGameMode::RespawnPlayer);
 	USoundBase* BGM = LoadObject<USoundBase>(NULL, TEXT("SoundCue'/Game/Audio/bgm02_Cue.bgm02_Cue'"));
 	PlayBGM(BGM);
+	if (StartingWidgetClass)
+	{
+		UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), StartingWidgetClass);
+		if (Widget)
+			Widget->AddToViewport();
+	}
 }
 
 void APNGameMode::PlayBGM(USoundBase* NewBGM)

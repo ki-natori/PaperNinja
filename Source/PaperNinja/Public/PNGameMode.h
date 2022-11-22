@@ -30,4 +30,8 @@ private:
 private:
 	UPROPERTY()
 		UAudioComponent* MusicSpeaker;
+
+	UPROPERTY()
+		TSubclassOf<UUserWidget> StartingWidgetClass;
+
 };

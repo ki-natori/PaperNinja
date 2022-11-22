@@ -61,7 +61,7 @@ public:
 	UFUNCTION()
 		void DropAllCoin();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		int GetNumOfCoins() const;
 
 	UFUNCTION()
@@ -70,21 +70,6 @@ public:
 public:
 	UPROPERTY(BlueprintReadOnly)
 		bool bHasScroll;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-		UCameraComponent* CameraComp;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-		USpringArmComponent* SpringArmComp;
-
-	UPROPERTY()
-		UParticleSystemComponent* DeathFX;
-
-	UPROPERTY()
-		UPointLightComponent* PointLight_R;
-
-	UPROPERTY()
-		UPointLightComponent* PointLight_L;
 
 private:
 	UPROPERTY()
@@ -98,4 +83,19 @@ private:
 
 	UPROPERTY()
 		float GroundSprintSpeed;
+
+	UPROPERTY()
+		UCameraComponent* CameraComp;
+
+	UPROPERTY()
+		USpringArmComponent* SpringArmComp;
+
+	UPROPERTY()
+		UParticleSystemComponent* DeathFX;
+
+	UPROPERTY()
+		UPointLightComponent* PointLight_R;
+
+	UPROPERTY()
+		UPointLightComponent* PointLight_L;
 };
