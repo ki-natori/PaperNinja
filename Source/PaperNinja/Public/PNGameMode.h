@@ -32,6 +32,8 @@ private:
 		UAudioComponent* MusicSpeaker;
 
 	UPROPERTY()
-		TSubclassOf<UUserWidget> StartingWidgetClass;
+		TSubclassOf<UUserWidget> HUDWidget;
 
+	UPROPERTY()
+		USoundBase* BGM;
 };

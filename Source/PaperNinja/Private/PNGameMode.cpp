@@ -16,20 +16,23 @@ APNGameMode::APNGameMode()
 	MusicSpeaker = CreateDefaultSubobject<UAudioComponent>(TEXT("MusicSpeaker"));
 	MusicSpeaker->SetAutoActivate(false);
 
+	ConstructorHelpers::FObjectFinder<USoundBase> BGMFinder(TEXT("SoundCue'/Game/Audio/bgm02_Cue.bgm02_Cue'"));
+	if (BGMFinder.Succeeded())
+		BGM = BGMFinder.Object;
+
 	ConstructorHelpers::FObjectFinder<UBlueprint> HUDFinder(TEXT("WidgetBlueprint'/Game/Blueprints/PNGameHUD.PNGameHUD'"));
 	if (HUDFinder.Succeeded())
-		StartingWidgetClass = HUDFinder.Object->GeneratedClass;
+		HUDWidget = HUDFinder.Object->GeneratedClass;
 }
 
 void APNGameMode::BeginPlay()
 {
 	APawn* Pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 	Pawn->OnDestroyed.AddDynamic(this, &APNGameMode::RespawnPlayer);
-	USoundBase* BGM = LoadObject<USoundBase>(NULL, TEXT("SoundCue'/Game/Audio/bgm02_Cue.bgm02_Cue'"));
 	PlayBGM(BGM);
-	if (StartingWidgetClass)
+	if (HUDWidget)
 	{
-		UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), StartingWidgetClass);
+		UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), HUDWidget);
 		if (Widget)
 			Widget->AddToViewport();
 	}
@@ -49,6 +52,5 @@ void APNGameMode::RespawnPlayer(AActor* DestroyedActor)
 	APNPlayerPawn* NewPawn = GetWorld()->SpawnActor<APNPlayerPawn>(APNPlayerPawn::StaticClass(), PlayerStart->GetActorTransform());
 	Controller->Possess(NewPawn);
 	NewPawn->OnDestroyed.AddDynamic(this, &APNGameMode::RespawnPlayer);
-	USoundBase* BGM = LoadObject<USoundBase>(NULL, TEXT("SoundCue'/Game/Audio/bgm02_Cue.bgm02_Cue'"));
 	PlayBGM(BGM);
 }
