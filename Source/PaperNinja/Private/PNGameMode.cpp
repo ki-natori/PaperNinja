@@ -49,4 +49,6 @@ void APNGameMode::RespawnPlayer(AActor* DestroyedActor)
 	APNPlayerPawn* NewPawn = GetWorld()->SpawnActor<APNPlayerPawn>(APNPlayerPawn::StaticClass(), PlayerStart->GetActorTransform());
 	Controller->Possess(NewPawn);
 	NewPawn->OnDestroyed.AddDynamic(this, &APNGameMode::RespawnPlayer);
+	USoundBase* BGM = LoadObject<USoundBase>(NULL, TEXT("SoundCue'/Game/Audio/bgm02_Cue.bgm02_Cue'"));
+	PlayBGM(BGM);
 }
