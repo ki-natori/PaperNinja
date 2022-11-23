@@ -18,6 +18,7 @@ APNPawn_Rabbit::APNPawn_Rabbit()
 	WalkGroundSpeed = 100;
 	SprintGroundSpeed = 220;
 	bIsSprint = false;
+	TraceTag = FName("Sight");
 
 	AIControllerClass = APNAIController::StaticClass();
 
@@ -44,7 +45,7 @@ void APNPawn_Rabbit::BeginPlay()
 
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &APNPawn_Rabbit::OnHit);
 	GetCharacterMovement()->MaxWalkSpeed = WalkGroundSpeed;
-	GetWorld()->DebugDrawTraceTag = FName("Sight");
+	//GetWorld()->DebugDrawTraceTag = TraceTag;
 }
 
 // Called every frame
@@ -57,7 +58,6 @@ void APNPawn_Rabbit::Tick(float DeltaTime)
 		FHitResult HitResult;
 		FVector Start = GetMesh()->GetSocketLocation(TEXT("spine"));
 		FVector End = Start + (GetActorForwardVector() * 50.0f);
-		const FName TraceTag("Sight");
 		FCollisionQueryParams Params;
 		Params.TraceTag = TraceTag;
 		Params.AddIgnoredActor(this);
@@ -95,7 +95,6 @@ void APNPawn_Rabbit::CanSeePlayerPawn(bool& bResult, AActor*& SeenActor)
 	FHitResult HitResult;
 	FVector Start = GetActorLocation();
 	FVector End = Start + (GetActorForwardVector() * SightLength);
-	const FName TraceTag("Sight");
 	FCollisionQueryParams Params;
 	Params.TraceTag = TraceTag;
 	Params.AddIgnoredActor(this);

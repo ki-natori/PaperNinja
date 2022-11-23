@@ -58,4 +58,7 @@ public:
 private:
 	UPROPERTY()
 		float SightLength;
+
+	UPROPERTY()
+		FName TraceTag;
 };
