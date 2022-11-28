@@ -45,7 +45,6 @@ void APNPawn_Rabbit::BeginPlay()
 
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &APNPawn_Rabbit::OnHit);
 	GetCharacterMovement()->MaxWalkSpeed = WalkGroundSpeed;
-	//GetWorld()->DebugDrawTraceTag = TraceTag;
 }
 
 // Called every frame
