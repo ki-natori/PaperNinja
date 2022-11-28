@@ -48,7 +48,7 @@ APNPlayerPawn::APNPlayerPawn()
 	SpringArmComp->bUsePawnControlRotation = true;
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
-	CameraComp->AttachToComponent(SpringArmComp, FAttachmentTransformRules::KeepRelativeTransform);
+	CameraComp->SetupAttachment(SpringArmComp);
 	CameraComp->FieldOfView = 50.0f;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -56,21 +56,21 @@ APNPlayerPawn::APNPlayerPawn()
 	GetCharacterMovement()->MaxAcceleration = 600;
 
 	DeathFX = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("DeathFX"));
-	DeathFX->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("spine"));
+	DeathFX->SetupAttachment(GetMesh(), TEXT("spine"));
 	ConstructorHelpers::FObjectFinder<UParticleSystem> DeathFXFinder(TEXT("ParticleSystem'/Game/Particles/PS_PlayerDeath.PS_PlayerDeath'"));
 	if (DeathFXFinder.Object)
 		DeathFX->SetTemplate(DeathFXFinder.Object);
 	DeathFX->SetAutoActivate(false);
 
 	PointLight_R = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLight_R"));
-	PointLight_R->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("right_ear03"));
+	PointLight_R->SetupAttachment(GetMesh(), TEXT("right_ear03"));
 	PointLight_R->SetIntensity(50.0f);
 	PointLight_R->SetAttenuationRadius(200.0f);
 	PointLight_R->SetLightColor(FLinearColor(0.39f, 1.0f, 0.16f));
 	PointLight_R->SetCastShadows(false);
 
 	PointLight_L = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLight_L"));
-	PointLight_L->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::KeepRelative, true), TEXT("left_ear03"));
+	PointLight_L->SetupAttachment(GetMesh(), TEXT("left_ear03"));
 	PointLight_L->SetIntensity(50.0f);
 	PointLight_L->SetAttenuationRadius(200.0f);
 	PointLight_L->SetLightColor(FLinearColor(0.39f, 1.0f, 0.16f));
