@@ -32,7 +32,7 @@ void APNConstruction_Floor::OnConstruction(const FTransform& Transform)
 			UStaticMeshComponent* NewMesh = NewObject<UStaticMeshComponent>(this);
 			NewMesh->SetupAttachment(SceneRoot);
 			NewMesh->RegisterComponent();
-			NewMesh->SetMobility(EComponentMobility::Static);
+			NewMesh->SetMobility(EComponentMobility::Movable);
 
 			FRotator Rotation(
 				0.0,

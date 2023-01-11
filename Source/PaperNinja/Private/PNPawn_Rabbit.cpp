@@ -30,9 +30,9 @@ APNPawn_Rabbit::APNPawn_Rabbit()
 	GetMesh()->SetRelativeLocation(FVector(0.0, 0.0, -44.0));
 	GetMesh()->SetRelativeRotation(FRotator(0.0, -90.0, 0.0));
 	GetMesh()->SetMobility(EComponentMobility::Movable);
-	ConstructorHelpers::FObjectFinder<UAnimBlueprint> AnimFinder(TEXT("AnimBlueprint'/Game/Animations/PNAnimBP_Rabbit.PNAnimBP_Rabbit'"));
+	ConstructorHelpers::FObjectFinder<UClass> AnimFinder(TEXT("Class'/Game/Animations/PNAnimBP_Rabbit.PNAnimBP_Rabbit_C'"));
 	if (AnimFinder.Succeeded())
-		GetMesh()->SetAnimInstanceClass(AnimFinder.Object->GetAnimBlueprintGeneratedClass());
+		GetMesh()->SetAnimInstanceClass(AnimFinder.Object);
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->MaxAcceleration = 150;

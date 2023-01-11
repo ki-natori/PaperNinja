@@ -20,9 +20,9 @@ APNGameMode::APNGameMode()
 	if (BGMFinder.Succeeded())
 		BGM = BGMFinder.Object;
 
-	ConstructorHelpers::FObjectFinder<UBlueprint> HUDFinder(TEXT("WidgetBlueprint'/Game/Blueprints/PNGameHUD.PNGameHUD'"));
+	ConstructorHelpers::FObjectFinder<UClass> HUDFinder(TEXT("Class'/Game/Blueprints/PNGameHUD.PNGameHUD_C'"));
 	if (HUDFinder.Succeeded())
-		HUDWidget = HUDFinder.Object->GeneratedClass;
+		HUDWidget = HUDFinder.Object;
 }
 
 void APNGameMode::BeginPlay()

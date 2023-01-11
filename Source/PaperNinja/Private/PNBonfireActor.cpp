@@ -12,6 +12,7 @@ APNBonfireActor::APNBonfireActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	MeshComp->SetMobility(EComponentMobility::Static);
 	ConstructorHelpers::FObjectFinder<UStaticMesh> MeshFinder(TEXT("StaticMesh'/Game/Props/SM_Bonfire.SM_Bonfire'"));
 	if (MeshFinder.Succeeded())
 		MeshComp->SetStaticMesh(MeshFinder.Object);
@@ -25,6 +26,7 @@ APNBonfireActor::APNBonfireActor()
 	FireFXComp->SetRelativeLocation(FVector(0.0, 0.0, 130.0));
 
 	PointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLight"));
+	PointLight->SetMobility(EComponentMobility::Static);
 	PointLight->SetupAttachment(RootComponent);
 	PointLight->SetRelativeLocation(FVector(0.0, 0.0, 210.0));
 	PointLight->SetLightColor(FLinearColor(1.0f, 0.48f, 0.32f));

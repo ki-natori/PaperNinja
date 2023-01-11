@@ -35,9 +35,9 @@ APNPlayerPawn::APNPlayerPawn()
 	GetMesh()->SetRelativeLocation(FVector(0.0, 0.0, -44.0));
 	GetMesh()->SetRelativeRotation(FRotator(0.0, -90.0, 0.0));
 	GetMesh()->SetMobility(EComponentMobility::Movable);
-	ConstructorHelpers::FObjectFinder<UAnimBlueprint> AnimFinder(TEXT("AnimBlueprint'/Game/Animations/PNAnimBP_Ninja.PNAnimBP_Ninja'"));
+	ConstructorHelpers::FObjectFinder<UClass> AnimFinder(TEXT("Class'/Game/Animations/PNAnimBP_Ninja.PNAnimBP_Ninja_C'"));
 	if (AnimFinder.Succeeded())
-		GetMesh()->SetAnimInstanceClass(AnimFinder.Object->GetAnimBlueprintGeneratedClass());
+		GetMesh()->SetAnimInstanceClass(AnimFinder.Object);
 
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
 	SpringArmComp->SetupAttachment(GetMesh());
